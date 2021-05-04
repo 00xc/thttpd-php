@@ -3070,6 +3070,8 @@ make_envp( httpd_conn* hc )
     if ( cp != (char*) 0 )
 	envp[envn++] = build_env( "SERVER_NAME=%s", cp );
     envp[envn++] = "GATEWAY_INTERFACE=CGI/1.1";
+    envp[envn++] = "REDIRECT_STATUS=1";
+    envp[envn++] = build_env("SCRIPT_FILENAME=%s", hc->expnfilename);
     envp[envn++] = build_env("SERVER_PROTOCOL=%s", hc->protocol);
     (void) my_snprintf( buf, sizeof(buf), "%d", (int) hc->hs->port );
     envp[envn++] = build_env( "SERVER_PORT=%s", buf );
